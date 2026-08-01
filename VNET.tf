@@ -9,7 +9,27 @@ resource "azurerm_virtual_network" "vnet" {    # "vnet" is Terraform identifier 
 
 resource "azurerm_subnet" "subnet" {             # "subnet" is Terraform identifier for "demo-subnet"(sometimes called the local name or reference name).
   name                 = "demo-subnet"           # "demo-subnet"  is the actual name of subnet that will appear in Azure
-  resource_group_name  = azurerm_resource_group.RG_Terraform_Terraform.name  #pulls the region (like Southeast Asia) from the Resource Group you defined.
+  resource_group_name  = azurerm_resource_group.RG_Terraform.name  #pulls the region (like Southeast Asia) from the Resource Group you defined.
   virtual_network_name = azurerm_virtual_network.vnet.name  ##pulls the name (like demo_vnet1) from the vnet you defined.
   address_prefixes     = ["10.0.1.0/24"]
+}
+
+resource "azurerm_public_ip" "vm_ip" {
+  name                = "demo-vm-ip"
+  location            = azurerm_resource_group.RG_Terraform.location
+  resource_group_name = azurerm_resource_group.RG_Terraform.name
+  allocation_method   = "Dynamic"
+}
+
+resource "azurerm_network_interface" "nic" {
+  name                = "demo-nic"
+  location            = azurerm_resource_group.RG_Terraform.location
+  resource_group_name = azurerm_resource_group.RG_Terraform.name
+
+  ip_configuration {
+    name                          = "internal"
+    subnet_id                     = azurerm_subnet.subnet.id
+    private_ip_address_allocation = "Dynamic"
+    public_ip_address_id          = azurerm_public_ip.vm_ip.id
+  }
 }
