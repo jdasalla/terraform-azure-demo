@@ -1,5 +1,5 @@
 resource "azurerm_windows_virtual_machine" "vm" {
-  name                = "demo-vm1"
+  name                = "demo-vm"
   location            = azurerm_resource_group.RG_Terraform.location
   resource_group_name = azurerm_resource_group.RG_Terraform.name
   size                = "Standard_D2s_v3"
