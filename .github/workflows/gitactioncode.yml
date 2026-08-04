@@ -22,4 +22,9 @@ jobs:
       - run: terraform init
       - run: terraform validate
       - run: terraform plan
+
+      # 👉 Import step bago mag-apply
+      - name: Import existing RG
+        run: terraform import azurerm_resource_group.RG_Terraform /subscriptions/53e398b6-1041-4cce-a9bf-f3b167986a4c/resourceGroups/demo-rg
+
       - run: terraform apply -auto-approve
