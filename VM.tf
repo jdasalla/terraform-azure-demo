@@ -3,7 +3,7 @@ resource "azurerm_windows_virtual_machine" "vm" {
   location            = azurerm_resource_group.RG_Terraform.location
   resource_group_name = azurerm_resource_group.RG_Terraform.name
   size                = "Standard_D2s_v3"
-  admin_username      = "azureuser1"
+  admin_username      = "azureuser"
   admin_password      = "P@ssword1234!" # ⚠️ Change this to a secure password
 
 
