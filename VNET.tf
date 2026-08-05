@@ -44,7 +44,7 @@ resource "azurerm_network_interface" "nic" {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.subnet1.id
     private_ip_address_allocation = "Static"
-    private_ip_address            = "10.0.1.4"
+    private_ip_address            = "10.0.1.5"
     public_ip_address_id          = azurerm_public_ip.vm_ip.id
   }
 }
