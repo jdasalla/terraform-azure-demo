@@ -33,7 +33,7 @@ resource "azurerm_network_security_group" "nsg" {
   #allow HTTPS
   security_rule {
     name                       = "AllowHTTPS"
-    priority                   = 111
+    priority                   = 109
     direction                  = "outbound"
     access                     = "Allow"
     protocol                   = "Tcp"
