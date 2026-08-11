@@ -36,4 +36,5 @@ resource "azurerm_virtual_machine_extension" "aad_login" {
   type                 = "AADLoginForWindows"
   type_handler_version = "2.2"
 }
+
 */
