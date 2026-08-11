@@ -1,4 +1,4 @@
-/*resource "azurerm_windows_virtual_machine" "vm" {
+resource "azurerm_windows_virtual_machine" "vm" {
   name                = "demo-vm1"
   location            = azurerm_resource_group.RG_Terraform.location
   resource_group_name = azurerm_resource_group.RG_Terraform.name
@@ -37,4 +37,3 @@ resource "azurerm_virtual_machine_extension" "aad_login" {
   type_handler_version = "2.2"
 }
 
-*/
