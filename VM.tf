@@ -36,10 +36,3 @@ resource "azurerm_virtual_machine_extension" "aad_login" {
   type                 = "AADLoginForWindows"
   type_handler_version = "2.2"
 }
-
-# Role assignment para sa Entra user (palitan ang object_id ng iyong user)
-resource "azurerm_role_assignment" "vm_admin_login" {
-  scope                = azurerm_windows_virtual_machine.vm.id
-  role_definition_name = "Virtual Machine Administrator Login"
-  principal_id         = "<object_id_ng_user_o_group>"
-}
