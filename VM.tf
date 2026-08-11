@@ -34,7 +34,7 @@ resource "azurerm_virtual_machine_extension" "aad_login" {
   virtual_machine_id   = azurerm_windows_virtual_machine.vm.id
   publisher            = "Microsoft.Azure.ActiveDirectory"
   type                 = "AADLoginForWindows"
-  type_handler_version = "2.2.0.0"
+  type_handler_version = "2.2"
 }
 
 # Role assignment para sa Entra user (palitan ang object_id ng iyong user)
