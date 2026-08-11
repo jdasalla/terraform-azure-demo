@@ -1,4 +1,4 @@
-# Network Security Group
+/*# Network Security Group
 resource "azurerm_network_security_group" "nsg" {
   name                = "demo-nsg1"
   location            = azurerm_resource_group.RG_Terraform.location

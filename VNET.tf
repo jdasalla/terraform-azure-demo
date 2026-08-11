@@ -1,5 +1,5 @@
 #Virtual Network
-
+/*
 resource "azurerm_virtual_network" "vnet" {                          # "vnet" is Terraform identifier for "demo-vnet1"(sometimes called the local name or reference name).
   name                = "demo-vnet1"                                 # "demo-vnet1"  is the actual name of VNET that will appear in Azure
   location            = azurerm_resource_group.RG_Terraform.location # pulls the region (like Southeast Asia) from the Resource Group you defined.
