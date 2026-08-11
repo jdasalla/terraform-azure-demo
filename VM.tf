@@ -6,7 +6,6 @@ resource "azurerm_windows_virtual_machine" "vm" {
   admin_username      = "azureuser"
   admin_password      = "P@ssword1234!" # ⚠️ Change this to a secure password
 
-
   network_interface_ids = [
     azurerm_network_interface.nic.id
   ]
@@ -20,7 +19,27 @@ resource "azurerm_windows_virtual_machine" "vm" {
   source_image_reference {
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
-    sku       = "2019-Datacenter"
+    sku       = "2022-datacenter" # Gamitin ang Windows Server 2022
     version   = "latest"
   }
+
+  identity {
+    type = "SystemAssigned"
+  }
+}
+
+# Azure AD Login extension
+resource "azurerm_virtual_machine_extension" "aad_login" {
+  name                 = "AADLoginForWindows"
+  virtual_machine_id   = azurerm_windows_virtual_machine.vm.id
+  publisher            = "Microsoft.Azure.ActiveDirectory"
+  type                 = "AADLoginForWindows"
+  type_handler_version = "1.0"
+}
+
+# Role assignment para sa Entra user (palitan ang object_id ng iyong user)
+resource "azurerm_role_assignment" "vm_admin_login" {
+  scope                = azurerm_windows_virtual_machine.vm.id
+  role_definition_name = "Virtual Machine Administrator Login"
+  principal_id         = "<object_id_ng_user_o_group>"
 }
