@@ -33,10 +33,7 @@ resource "azurerm_public_ip" "vm_ip" {
   location            = azurerm_resource_group.RG_Terraform.location
   resource_group_name = azurerm_resource_group.RG_Terraform.name
   allocation_method   = "Static"
-
-  dns_settings {
-    domain_name_label = "demo-vm1"
-  }
+  domain_name_label = "demo-vm1"
 
 }
 
